@@ -1,0 +1,21 @@
+{
+  "name": "pwa-izomorphic",
+  "version": "1.0.0",
+  "description": "Example how to combine pwa with izomorphic rendering",
+  "main": "server.js",
+  "scripts": {
+    "start": "./node_modules/webpack/bin/webpack.js -w",
+    "build": "./node_modules/webpack/bin/webpack.js -p"
+  },
+  "author": "Michal Janaszek",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "express": "^4.16.2",
+    "faker": "^4.1.0",
+    "webpack": "^3.8.1",
+    "webpack-node-externals": "^1.6.0"
+  }
+}
