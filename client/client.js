@@ -5,9 +5,13 @@ const renderBlog = data => {
 };
 
 setTimeout(() => {
-    renderBlog();
+    if (window.__PRELOADED_STATE__) {
+        renderBlog(window.__PRELOADED_STATE__);
+    } else {
+        renderBlog();
 
-    fetch('/posts')
-        .then(res => res.json())
-        .then(res => renderBlog(res));
+        fetch('/posts')
+            .then(res => res.json())
+            .then(res => renderBlog(res));
+    }
 }, 1000);

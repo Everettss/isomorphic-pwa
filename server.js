@@ -2,23 +2,26 @@ const express = require('express');
 const app = express();
 const getPosts = require('./server/getPosts');
 
+import blog from './client/blog';
+
 app.use(express.static('public'));
 
-const html = () => `
+const html = (blog, data) => `
     <!DOCTYPE html>
     <head>
         <link rel="stylesheet" href="style.css">
     </head>
     <html>
         <body>
-            <div id="app">
-                <div class="loading">loading</div>
-            </div>
+            <div id="app">${blog(data)}</div>
+            <script>
+                window.__PRELOADED_STATE__ = ${JSON.stringify(data)}
+            </script>
             <script src="script.js"></script>
             <script>
                 if ('serviceWorker' in navigator) {
                     window.addEventListener('load', () => {
-                        navigator.serviceWorker.register('/sw.js');
+//                        navigator.serviceWorker.register('/sw.js');
                     });
                 }
             </script>
@@ -27,7 +30,9 @@ const html = () => `
 `;
 
 app.get('/', (req, res) => {
-    res.send(html());
+    getPosts(posts => {
+        res.send(html(blog, posts));
+    });
 });
 
 app.get('/posts', (req, res) => {
