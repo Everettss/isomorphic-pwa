@@ -15,6 +15,13 @@ const html = () => `
                 <div class="loading">loading</div>
             </div>
             <script src="script.js"></script>
+            <script>
+                if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/sw.js');
+                    });
+                }
+            </script>
         </body>
     </html>
 `;
