@@ -21,7 +21,7 @@ const html = (blog, data) => `
             <script>
                 if ('serviceWorker' in navigator) {
                     window.addEventListener('load', () => {
-//                        navigator.serviceWorker.register('/sw.js');
+                        navigator.serviceWorker.register('/sw.js');
                     });
                 }
             </script>
@@ -30,8 +30,9 @@ const html = (blog, data) => `
 `;
 
 app.get('/', (req, res) => {
+    const shell = typeof req.query.shell !== 'undefined';
     getPosts(posts => {
-        res.send(html(blog, posts));
+        res.send(html(blog, shell ? false : posts));
     });
 });
 
