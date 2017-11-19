@@ -6,7 +6,7 @@ import blog from './client/blog';
 
 app.use(express.static('public'));
 
-const html = (blog, data) => `
+const html = data => `
     <!DOCTYPE html>
     <head>
         <link rel="stylesheet" href="style.css">
@@ -30,10 +30,16 @@ const html = (blog, data) => `
 `;
 
 app.get('/', (req, res) => {
-    const shell = typeof req.query.shell !== 'undefined';
-    getPosts(posts => {
-        res.send(html(blog, shell ? false : posts));
-    });
+    setTimeout(() => {
+        const shell = typeof req.query.shell !== 'undefined';
+        if (shell) {
+            res.send(html());
+        } else {
+            getPosts(posts => {
+                res.send(html(posts));
+            });
+        }
+    }, 1000);
 });
 
 app.get('/posts', (req, res) => {
