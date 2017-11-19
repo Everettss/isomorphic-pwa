@@ -20,7 +20,9 @@ const html = () => `
 `;
 
 app.get('/', (req, res) => {
-    res.send(html());
+    setTimeout(() => {
+        res.send(html());
+    }, 1000);
 });
 
 app.get('/posts', (req, res) => {

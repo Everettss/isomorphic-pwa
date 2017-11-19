@@ -19,9 +19,7 @@ const blog = data => `
             ${
                 data
                     ? data.map(postData => post(postData)).join('')
-                    : Array.from(new Array(2))
-                          .map(skeletonPost)
-                          .join('')
+                    : [skeletonPost(), skeletonPost()].join('')
             }
         </section>
         <aside>
