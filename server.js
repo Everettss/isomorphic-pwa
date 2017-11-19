@@ -6,7 +6,7 @@ import blog from './client/blog';
 
 app.use(express.static('public'));
 
-const html = (blog, data) => `
+const html = data => `
     <!DOCTYPE html>
     <head>
         <link rel="stylesheet" href="style.css">
@@ -30,9 +30,11 @@ const html = (blog, data) => `
 `;
 
 app.get('/', (req, res) => {
-    getPosts(posts => {
-        res.send(html(blog, posts));
-    });
+    setTimeout(() => {
+        getPosts(posts => {
+            res.send(html(posts));
+        });
+    }, 1000);
 });
 
 app.get('/posts', (req, res) => {
