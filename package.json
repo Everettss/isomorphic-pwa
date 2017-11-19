@@ -1,7 +1,7 @@
 {
-  "name": "pwa-izomorphic",
+  "name": "isomorphic-pwa",
   "version": "1.0.0",
-  "description": "Example how to combine pwa with izomorphic rendering",
+  "description": "Example how to combine PWA with isomorphic rendering",
   "main": "server.js",
   "scripts": {
     "start": "./node_modules/webpack/bin/webpack.js -w",
